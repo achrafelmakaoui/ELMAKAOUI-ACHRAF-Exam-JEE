@@ -1,1 +1,53 @@
-<p>agences works!</p>
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+      <h1 class="mb-0">Agences</h1>
+      <a routerLink="/new-agence" class="btn btn-success">
+        + Nouvelle agence
+      </a>
+    </div>
+
+    <div class="card-body">
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Ville</th>
+            <th>Téléphone</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of agences">
+            <td>{{ a.id }}</td>
+            <td>{{ a.nom }}</td>
+            <td>{{ a.adresse }}</td>
+            <td>{{ a.ville }}</td>
+            <td>{{ a.telephone }}</td>
+            <td>
+              <button class="btn btn-danger btn-sm"
+                      (click)="handleDeleteAgence(a)"
+                      title="Supprimer">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="agences.length === 0 && !errorMessage">
+            <td colspan="6" class="text-center text-muted py-4">
+              Aucune agence trouvée.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

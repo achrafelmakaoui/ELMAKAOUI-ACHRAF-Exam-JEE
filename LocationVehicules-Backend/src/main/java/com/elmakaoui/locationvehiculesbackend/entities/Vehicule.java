@@ -32,7 +32,12 @@ public abstract class Vehicule {
     @JoinColumn(name = "agence_id")
     private Agence agence;
 
-    @OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY)
+    @OneToMany(
+            mappedBy = "vehicule",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Location> locations;
 
 }
