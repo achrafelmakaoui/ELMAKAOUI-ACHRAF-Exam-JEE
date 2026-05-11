@@ -1,9 +1,9 @@
 # Angular
-ebanking-frontend/node_modules
-ebanking-frontend/dist
+LocationVehicules-Frontend/node_modules
+LocationVehicules-Frontend/dist
 
 # Spring Boot
-ebanking-backend/target
+LocationVehicules-Backend/target
 
 # IntelliJ
 .idea
