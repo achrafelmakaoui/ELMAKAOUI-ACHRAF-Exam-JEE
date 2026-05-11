@@ -22,5 +22,4 @@ public class Agence {
 
     @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
     private List<Vehicule> vehicules;
-
 }
