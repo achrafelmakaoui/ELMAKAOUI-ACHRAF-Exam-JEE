@@ -1,1 +1,77 @@
-<p>new-agence works!</p>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+
+      <div class="card">
+        <div class="card-header bg-light">
+          Nouvelle agence
+        </div>
+
+        <div class="card-body">
+
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <form [formGroup]="newAgenceForm" (ngSubmit)="handleSaveAgence()">
+
+            <!-- Nom -->
+            <div class="mb-3">
+              <label class="form-label">Nom :</label>
+              <input type="text" class="form-control" formControlName="nom">
+              <small *ngIf="newAgenceForm.get('nom')?.invalid &&
+                            newAgenceForm.get('nom')?.touched"
+                     class="text-danger">
+                Le nom est requis (min 2 caractères).
+              </small>
+            </div>
+
+            <!-- Adresse -->
+            <div class="mb-3">
+              <label class="form-label">Adresse :</label>
+              <input type="text" class="form-control" formControlName="adresse">
+              <small *ngIf="newAgenceForm.get('adresse')?.invalid &&
+                            newAgenceForm.get('adresse')?.touched"
+                     class="text-danger">
+                L'adresse est requise.
+              </small>
+            </div>
+
+            <!-- Ville -->
+            <div class="mb-3">
+              <label class="form-label">Ville :</label>
+              <input type="text" class="form-control" formControlName="ville">
+              <small *ngIf="newAgenceForm.get('ville')?.invalid &&
+                            newAgenceForm.get('ville')?.touched"
+                     class="text-danger">
+                La ville est requise.
+              </small>
+            </div>
+
+            <!-- Téléphone -->
+            <div class="mb-3">
+              <label class="form-label">Téléphone :</label>
+              <input type="text" class="form-control" formControlName="telephone">
+              <small *ngIf="newAgenceForm.get('telephone')?.invalid &&
+                            newAgenceForm.get('telephone')?.touched"
+                     class="text-danger">
+                Téléphone invalide (8 à 15 chiffres).
+              </small>
+            </div>
+
+            <button type="submit"
+                    class="btn btn-info text-white"
+                    [disabled]="newAgenceForm.invalid">
+              Enregistrer
+            </button>
+
+            <a routerLink="/agences" class="btn btn-secondary ms-2">
+              Annuler
+            </a>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,68 @@
-<p>vehicules works!</p>
+<div class="container mt-3">
+
+  <div class="card">
+    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+      <h1 class="mb-0">Véhicules</h1>
+      <a routerLink="/new-vehicule" class="btn btn-success">
+        + Nouveau véhicule
+      </a>
+    </div>
+
+    <div class="card-body">
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Matricule</th>
+            <th>Prix/jour</th>
+            <th>Statut</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of vehicules">
+            <td>{{ v.id }}</td>
+            <td>
+              <span class="badge"
+                    [class.bg-primary]="v.type === 'VOITURE'"
+                    [class.bg-info]="v.type === 'MOTO'">
+                {{ v.type }}
+              </span>
+            </td>
+            <td>{{ v.marque }}</td>
+            <td>{{ v.modele }}</td>
+            <td>{{ v.matricule }}</td>
+            <td>{{ v.prixParJour }} DH</td>
+            <td>
+              <span [class]="getStatusBadgeClass(v.statut)">
+                {{ v.statut }}
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm"
+                      (click)="handleDeleteVehicule(v)"
+                      title="Supprimer">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="vehicules.length === 0 && !errorMessage">
+            <td colspan="8" class="text-center text-muted py-4">
+              Aucun véhicule trouvé.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

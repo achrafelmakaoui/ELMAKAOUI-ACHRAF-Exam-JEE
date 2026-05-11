@@ -1,1 +1,147 @@
-<p>new-vehicule works!</p>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+
+      <div class="card">
+        <div class="card-header bg-light">
+          Nouveau véhicule
+        </div>
+
+        <div class="card-body">
+
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <form [formGroup]="newVehiculeForm" (ngSubmit)="handleSaveVehicule()">
+            <div class="mb-3">
+              <label class="form-label fw-bold">Type de véhicule :</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio"
+                         id="typeVoiture"
+                         value="VOITURE" formControlName="type">
+                  <label class="form-check-label" for="typeVoiture">Voiture</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio"
+                         id="typeMoto"
+                         value="MOTO" formControlName="type">
+                  <label class="form-check-label" for="typeMoto">Moto</label>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Marque :</label>
+                <input type="text" class="form-control" formControlName="marque">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Modèle :</label>
+                <input type="text" class="form-control" formControlName="modele">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Matricule :</label>
+                <input type="text" class="form-control" formControlName="matricule">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Prix par jour (DH) :</label>
+                <input type="number" class="form-control" formControlName="prixParJour">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Date mise en service :</label>
+                <input type="date" class="form-control" formControlName="dateMiseEnService">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Statut :</label>
+                <select class="form-select" formControlName="statut">
+                  <option *ngFor="let s of statutOptions" [value]="s">{{ s }}</option>
+                </select>
+              </div>
+
+              <div class="col-md-12 mb-3">
+                <label class="form-label">Agence :</label>
+                <select class="form-select" formControlName="agenceId">
+                  <option *ngFor="let a of agences" [ngValue]="a.id">
+                    {{ a.nom }} — {{ a.ville }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <hr>
+
+            <div *ngIf="selectedType === 'VOITURE'" class="row">
+              <h5 class="text-primary mb-3">Détails voiture</h5>
+
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Nombre de portes :</label>
+                <input type="number" class="form-control" formControlName="nombrePortes" min="2" max="5">
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Type carburant :</label>
+                <select class="form-select" formControlName="typeCarburant">
+                  <option *ngFor="let c of carburantOptions" [value]="c">{{ c }}</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Boîte de vitesse :</label>
+                <select class="form-select" formControlName="boiteVitesse">
+                  <option *ngFor="let b of boiteOptions" [value]="b">{{ b }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div *ngIf="selectedType === 'MOTO'" class="row">
+              <h5 class="text-info mb-3">Détails moto</h5>
+
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Cylindrée (cc) :</label>
+                <input type="number" class="form-control" formControlName="cylindree" min="50">
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Type moto :</label>
+                <select class="form-select" formControlName="typeMoto">
+                  <option *ngFor="let t of typeMotoOptions" [value]="t">{{ t }}</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label class="form-label d-block">Casque inclus :</label>
+                <div class="form-check form-switch mt-2">
+                  <input class="form-check-input" type="checkbox"
+                         formControlName="casqueInclus">
+                  <label class="form-check-label">Oui</label>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+
+            <button type="submit"
+                    class="btn btn-info text-white"
+                    [disabled]="newVehiculeForm.invalid">
+              Enregistrer
+            </button>
+
+            <a routerLink="/vehicules" class="btn btn-secondary ms-2">
+              Annuler
+            </a>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

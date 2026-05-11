@@ -6,7 +6,7 @@ import { NewAgence } from './new-agence/new-agence';
 
 export const routes: Routes = [
     { path:"agences", component: Agences},
-    { path:"new-agences", component: NewAgence},
+    { path:"new-agence", component: NewAgence},
     { path:"vehicules", component: Vehicules},
-    { path:"new-vehicules", component: NewVehicule},
+    { path:"new-vehicule", component: NewVehicule},
 ];
