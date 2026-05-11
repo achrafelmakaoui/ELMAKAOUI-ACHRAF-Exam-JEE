@@ -1,0 +1,13 @@
+# Angular
+ebanking-frontend/node_modules
+ebanking-frontend/dist
+
+# Spring Boot
+ebanking-backend/target
+
+# IntelliJ
+.idea
+*.iml
+
+# VSCode
+.vscode
